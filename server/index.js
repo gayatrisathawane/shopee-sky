@@ -55,10 +55,31 @@ app.post('/signup', async (req, res) => {
 
 
 
+// Login 
+app.post('/login',async(req,res)=>{
+
+    const{ name, email,password}=req.body;
+
+    const loginUser = await User.findOne({email:email ,password:password}).select('name gmail gender address')
 
 
+    if(!loginUser){
+        return res.json({
+            success:false,
+            message:"Invalid credintial"
 
-//login user
+        })
+
+    }
+
+    res.json({
+        data:loginUser,
+        message:"login successfully"
+
+    })
+})
+
+
 
 
 
