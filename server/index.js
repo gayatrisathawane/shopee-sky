@@ -2,10 +2,8 @@ import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 dotenv.config()
-
 import User from './models/user.js'
-
-
+import Product from './models/product.js'
 const app = express()
 
 app.use(express.json())
@@ -23,9 +21,21 @@ const mongoDb = async () => {
     }
 
 }
-mongoDb()
 
-//sin up
+
+
+// get all signUp user 
+app.get('/users', async (req, res) => {
+
+    const allUser = await User.find();
+
+    res.json({
+        data: allUser,
+        message: "fetch all data"
+    })
+})
+
+//sign up
 app.post('/signup', async (req, res) => {
 
     const { name, email, mobile, address, password, gender } = req.body
@@ -56,25 +66,45 @@ app.post('/signup', async (req, res) => {
 
 
 // Login 
-app.post('/login',async(req,res)=>{
+// app.post('/login',async(req,res)=>{
 
-    const{ name, email,password}=req.body;
+//     const{ name, email,password}=req.body;
 
-    const loginUser = await User.findOne({email:email ,password:password}).select('name gmail gender address')
+//     const loginUser = await User.findOne({email:email ,password:password}).select('name gmail gender address')
 
 
-    if(!loginUser){
-        return res.json({
-            success:false,
-            message:"Invalid credintial"
+//     if(loginUser){
+//         return res.json({
+//             success:true,
+//             data:loginUser,
+//             message:"login successfully"
 
-        })
+//         })
+//     }
+//    else{
+//     return res.json({
+//         success:false,
+//         data:loginUser,
 
-    }
+
+//     })
+
+//    }
+// })
+
+
+//Product APIS
+
+//get all products
+
+app.get('/products', async (req, res) => {
+
+    const products = await Product.find();
 
     res.json({
-        data:loginUser,
-        message:"login successfully"
+        success: true,
+        data: products,
+        message: "all fetched successfuly"
 
     })
 })
@@ -83,10 +113,7 @@ app.post('/login',async(req,res)=>{
 
 
 
-
-
-
-
 app.listen(PORT, () => {
     console.log(`port running on Port no  ${PORT}`)
+    mongoDb()
 })
