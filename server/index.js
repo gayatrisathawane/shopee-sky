@@ -138,6 +138,23 @@ app.post('/products', async (req, res) => {
     }
 })
 
+//get data by id 
+
+app.get('/products/:_id',async(req,res)=>{
+
+    const{ _id }= req.params
+
+    const findOneProduct = await Product.findOne({ _id:_id} )
+
+    res.json({
+        data:findOneProduct,
+        message:"fetch product successfully"
+    })
+
+
+})
+
+
 
 
 
