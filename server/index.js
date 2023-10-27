@@ -109,6 +109,36 @@ app.get('/products', async (req, res) => {
     })
 })
 
+// product Post api
+
+app.post('/products', async (req, res) => {
+
+    const { name, price, category, brand, productImg, description } = req.body
+
+    const newProduct = new Product({
+        name, price, category, brand, productImg, description
+    })
+
+
+    try {
+        const savedProduct = await newProduct.save()
+
+        return res.json({
+            data: savedProduct,
+            success: true,
+            message: "product added"
+        })
+    }
+    catch (e) {
+        return res.json(
+            {
+                message: (e.message)
+            }
+        )
+    }
+})
+
+
 
 
 
