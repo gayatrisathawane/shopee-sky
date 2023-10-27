@@ -154,6 +154,19 @@ app.get('/products/:_id',async(req,res)=>{
 
 })
 
+//delete api 
+app.delete('/products/:_id',async(req,res)=>{
+
+    const{ _id }= req.params
+
+    await Product.deleteOne({_id:_id})
+
+    res.json({
+        success:true,
+        message:"product delete successfully"
+    })
+
+})
 
 
 
