@@ -183,6 +183,26 @@ app.get('/product/search',async(req,res)=>{
         })
 })
 
+// update product by id
+
+app.put('/products/:_id', async(req,res)=>{
+
+    const { _id } = req.params
+
+    const { name, price, category, brand, productImg, description } = req.body;
+
+     await Product.updateOne({ _id: _id} , {$set:{
+        name, price, category, brand, productImg, description
+    }})
+
+    const newupdatedProduct = await Product.findById( _id )
+
+    res.json({
+        data:newupdatedProduct,
+        message:"updated product successfully"
+    })
+})
+
 
 
 
