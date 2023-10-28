@@ -243,11 +243,44 @@ app.get('/orders',async(req,res)=>{
 
     const  findAllOrders = await Order.find().populate('user product')
 
+    findAllOrders.forEach((order)=>{
+
+        order.user.password=undefined
+    })
+
     res.json({
         data:findAllOrders,
         message:"successfully fetch all order"
     })
 })
+
+// GET :order/user/:id
+
+app.get('/orders/user/:id',async(req,res)=>{
+
+    const {id}=req.params;
+
+     const orderUserId  = await  Order.find({user:id}).populate('user product')
+
+
+     // remove password from all the order 
+     orderUserId.forEach((order)=>{
+
+        order.user.password= undefined
+     })
+
+     res.json({
+        data:orderUserId,
+        message:"find product succesfully"
+     })
+})
+
+// PATHCH: order/status/:id
+
+
+
+
+
 
 
 
