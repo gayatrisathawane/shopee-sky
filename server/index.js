@@ -277,7 +277,19 @@ app.get('/orders/user/:id',async(req,res)=>{
 
 // PATHCH: order/status/:id
 
+app.patch('/orders/status/:id',async(req,res)=>{
 
+    const {id} = req.params;
+    
+    const {status}=req.body;
+
+  await Order.updateOne({_id:id},{$set:{status:status}})
+
+  res.json({
+    status:true,
+    message:"Order status update successfully///"
+  })
+})
 
 
 
