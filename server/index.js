@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 import User from './models/user.js'
 import Product from './models/product.js'
+import Order from './models/Order.js'
 const app = express()
 
 app.use(express.json())
@@ -201,6 +202,38 @@ app.put('/products/:_id', async(req,res)=>{
         data:newupdatedProduct,
         message:"updated product successfully"
     })
+})
+
+//order
+
+//POST :orders
+
+app.post('/orders',async(req,res)=>{
+
+    const {user,product,quantity,shipping_address,delivery_charges}=req.body
+
+    const OrderProduct = new Order({
+        user,product,quantity,shipping_address,delivery_charges
+
+    })
+
+   try{
+    const savedOrderProduct = await OrderProduct.save()
+
+    res.json({
+        data:savedOrderProduct,
+        success:true,
+        message:"Congratulation  your order has been placed"
+    })
+   }catch(e)
+   {
+    res.json({
+        message:e.message
+    })
+   }
+
+
+
 })
 
 
