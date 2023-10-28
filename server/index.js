@@ -237,6 +237,19 @@ app.post('/orders',async(req,res)=>{
 })
 
 
+//GET //all order
+
+app.get('/orders',async(req,res)=>{
+
+    const  findAllOrders = await Order.find().populate('user product')
+
+    res.json({
+        data:findAllOrders,
+        message:"successfully fetch all order"
+    })
+})
+
+
 
 
 
