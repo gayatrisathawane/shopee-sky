@@ -42,17 +42,20 @@ app.post('/signup', async (req, res) => {
     const { name, email, mobile, address, password, gender } = req.body
 
     const newUser = new User({
-        name, email, mobile, address, password, gender
+        name,
+        email,
+        mobile,
+        address,
+        password,
+        gender
     })
-
-
 
     try {
         const saveUser = await newUser.save()
         return res.json({
             data: saveUser,
             success: true,
-            message: "successfully created signup"
+            message: "SignUp successfully"
         })
     }
     catch (e) {
@@ -67,31 +70,31 @@ app.post('/signup', async (req, res) => {
 
 
 // Login 
-// app.post('/login',async(req,res)=>{
+app.post('/login',async(req,res)=>{
 
-//     const{ name, email,password}=req.body;
+    const{email,password}=req.body;
 
-//     const loginUser = await User.findOne({email:email ,password:password}).select('name gmail gender address')
-
-
-//     if(loginUser){
-//         return res.json({
-//             success:true,
-//             data:loginUser,
-//             message:"login successfully"
-
-//         })
-//     }
-//    else{
-//     return res.json({
-//         success:false,
-//         data:loginUser,
+    const loginUser = await User.findOne
+    ({ email:email ,password:password}).select('name email')
 
 
-//     })
+    if(loginUser){
+        return res.json({
+            success:true,
+            data:loginUser,
+            message:"login successfully"
 
-//    }
-// })
+        })
+    }
+   else{
+    return res.json({
+        success:false,
+        message:"Invalid creditials",
+        data:loginUser
+    })
+
+   }
+})
 
 
 //Product APIS
@@ -141,66 +144,68 @@ app.post('/products', async (req, res) => {
 
 //get data by id 
 
-app.get('/products/:_id',async(req,res)=>{
+app.get('/products/:_id', async (req, res) => {
 
-    const{ _id }= req.params
+    const { _id } = req.params
 
-    const findOneProduct = await Product.findOne({ _id:_id} )
+    const findOneProduct = await Product.findOne({ _id: _id })
 
     res.json({
-        data:findOneProduct,
-        message:"fetch product successfully"
+        data: findOneProduct,
+        message: "fetch product successfully"
     })
 
 
 })
 
 //delete api 
-app.delete('/products/:_id',async(req,res)=>{
+app.delete('/products/:_id', async (req, res) => {
 
-    const{ _id }= req.params
+    const { _id } = req.params
 
-    await Product.deleteOne({_id:_id})
+    await Product.deleteOne({ _id: _id })
 
     res.json({
-        success:true,
-        message:"product delete successfully"
+        success: true,
+        message: "product delete successfully"
     })
 
 })
 
 // //search product by name
-app.get('/product/search',async(req,res)=>{
+app.get('/product/search', async (req, res) => {
 
-    const{ q }= req.query;
+    const { q } = req.query;
 
-    const searchProduct = await Product.find({name: {$regex: q , $options:'i' }})
+    const searchProduct = await Product.find({ name: { $regex: q, $options: 'i' } })
 
-    
-        return res.json({
-            success:true,
-            data: searchProduct,
-            message:"search successfully"
-        })
+
+    return res.json({
+        success: true,
+        data: searchProduct,
+        message: "search successfully"
+    })
 })
 
 // update product by id
 
-app.put('/products/:_id', async(req,res)=>{
+app.put('/products/:_id', async (req, res) => {
 
     const { _id } = req.params
 
     const { name, price, category, brand, productImg, description } = req.body;
 
-     await Product.updateOne({ _id: _id} , {$set:{
-        name, price, category, brand, productImg, description
-    }})
+    await Product.updateOne({ _id: _id }, {
+        $set: {
+            name, price, category, brand, productImg, description
+        }
+    })
 
-    const newupdatedProduct = await Product.findById( _id )
+    const newupdatedProduct = await Product.findById(_id)
 
     res.json({
-        data:newupdatedProduct,
-        message:"updated product successfully"
+        data: newupdatedProduct,
+        message: "updated product successfully"
     })
 })
 
@@ -208,29 +213,28 @@ app.put('/products/:_id', async(req,res)=>{
 
 //POST :orders
 
-app.post('/orders',async(req,res)=>{
+app.post('/orders', async (req, res) => {
 
-    const {user,product,quantity,shipping_address,delivery_charges}=req.body
+    const { user, product, quantity, shipping_address, delivery_charges } = req.body
 
     const OrderProduct = new Order({
-        user,product,quantity,shipping_address,delivery_charges
+        user, product, quantity, shipping_address, delivery_charges
 
     })
 
-   try{
-    const savedOrderProduct = await OrderProduct.save()
+    try {
+        const savedOrderProduct = await OrderProduct.save()
 
-    res.json({
-        data:savedOrderProduct,
-        success:true,
-        message:"Congratulation  your order has been placed"
-    })
-   }catch(e)
-   {
-    res.json({
-        message:e.message
-    })
-   }
+        res.json({
+            data: savedOrderProduct,
+            success: true,
+            message: "Congratulation  your order has been placed"
+        })
+    } catch (e) {
+        res.json({
+            message: e.message
+        })
+    }
 
 
 
@@ -239,56 +243,56 @@ app.post('/orders',async(req,res)=>{
 
 //GET //all order
 
-app.get('/orders',async(req,res)=>{
+app.get('/orders', async (req, res) => {
 
-    const  findAllOrders = await Order.find().populate('user product')
+    const findAllOrders = await Order.find().populate('user product')
 
-    findAllOrders.forEach((order)=>{
+    findAllOrders.forEach((order) => {
 
-        order.user.password=undefined
+        order.user.password = undefined
     })
 
     res.json({
-        data:findAllOrders,
-        message:"successfully fetch all order"
+        data: findAllOrders,
+        message: "successfully fetch all order"
     })
 })
 
 // GET :order/user/:id
 
-app.get('/orders/user/:id',async(req,res)=>{
+app.get('/orders/user/:id', async (req, res) => {
 
-    const {id}=req.params;
+    const { id } = req.params;
 
-     const orderUserId  = await  Order.find({user:id}).populate('user product')
+    const orderUserId = await Order.find({ user: id }).populate('user product')
 
 
-     // remove password from all the order 
-     orderUserId.forEach((order)=>{
+    // remove password from all the order 
+    orderUserId.forEach((order) => {
 
-        order.user.password= undefined
-     })
+        order.user.password = undefined
+    })
 
-     res.json({
-        data:orderUserId,
-        message:"find product succesfully"
-     })
+    res.json({
+        data: orderUserId,
+        message: "find product succesfully"
+    })
 })
 
 // PATHCH: order/status/:id
 
-app.patch('/orders/status/:id',async(req,res)=>{
+app.patch('/orders/status/:id', async (req, res) => {
 
-    const {id} = req.params;
-    
-    const {status}=req.body;
+    const { id } = req.params;
 
-  await Order.updateOne({_id:id},{$set:{status:status}})
+    const { status } = req.body;
 
-  res.json({
-    status:true,
-    message:"Order status update successfully///"
-  })
+    await Order.updateOne({ _id: id }, { $set: { status: status } })
+
+    res.json({
+        status: true,
+        message: "Order status update successfully///"
+    })
 })
 
 
