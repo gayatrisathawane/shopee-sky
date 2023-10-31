@@ -1,12 +1,23 @@
-.main-container {
+/* .main-container {
     background-image: url('https://t3.ftcdn.net/jpg/05/35/13/82/360_F_535138292_62ZnI4Hcw37J8Jaeg4E9TzJwUciCwSnp.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
     position: relative;
+} */
+
+.login-main-container{
+
+    box-shadow: 0 0 5px black;
+    width:900px;
+    height:400px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: white;
+
 }
 
-.login-form-container{
+/* .login-form-container{
     position: absolute;
     top: 150px;
     left: 100px;
@@ -15,14 +26,15 @@
     height: fit-content;
     padding: 10px 15px;
     box-shadow: 0 0 10px 0 white;
-}
+} */
 .btn-login{
     display: block;
     margin: 0 auto;
-    background-color: white;
-    padding: 5px 20px;
+    background-color: rgb(0, 0, 0);
+    padding: 7px 10px;
+    color: #fff;
     font-size: 20px;
-    margin-top: 10px;
+    margin-top: 30px;
     margin-bottom: 4px;
    
 }

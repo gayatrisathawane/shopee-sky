@@ -1,46 +1,58 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
+import './Navbar.css'
+import {Link} from 'react-router-dom'
 
 const Navbar = () => {
+
+  const [user,setUser]=useState({});
+
+useEffect(()=>{
+
+  const userStore = JSON.parse(localStorage.getItem(('user') || '{}'))
+  setUser(userStore)
+
+},[])
+
+
+
   return (
-//     <nav class="navbar navbar-expand-lg bg-light">
-//     <div class="container-fluid">
-//       <a class="navbar-brand" href="#">Navbar</a>
-//       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-//         <span class="navbar-toggler-icon"></span>
-//       </button>
-//       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-//         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-//           <li class="nav-item">
-//             <a class="nav-link active" aria-current="page" href="#">Home</a>
-//           </li>
-//           <li class="nav-item">
-//             <a class="nav-link" href="#">Link</a>
-//           </li>
-//           <li class="nav-item dropdown">
-//             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-//               Dropdown
-//             </a>
-//             <ul class="dropdown-menu">
-//               <li><a class="dropdown-item" href="#">Action</a></li>
-//               <li><a class="dropdown-item" href="#">Another action</a></li>
-//               <li><hr class="dropdown-divider"/></li>
-//               <li><a class="dropdown-item" href="#">Something else here</a></li>
-//             </ul>
-//           </li>
-//           <li class="nav-item">
-//             <a class="nav-link disabled">Disabled</a>
-//           </li>
-//         </ul>
-//         <form class="d-flex" role="search">
+      <div className='d-flex justify-content-between navbar-container p-2 align-items-center'>
+
+        <div>
+        <p><Link to='/' className='logo'> 🛒 ShoppeSky</Link> </p> 
+        </div>
+
+        <div>
+          <div>
+            <Link to='/login' className='nav-links'>Login</Link>
+            <Link to='/signup' className='nav-links'>Signup</Link>
+            <Link to='/myorders' className='nav-links'>MyOrders</Link>
+          </div>
+
+        </div>
+
+        <div>
+            
+          <span className='text-light fs-4 ms-2'>Hello,{user?.name || 'user'}</span> 
+
+
+          {
+            user?.name ? (
+              <span className='text-light fs-5 ms-3 curser-pointer' onClick={()=>{
+                localStorage.removeItem('user')
+                window.location.href = '/login'
+              }}> Logout</span>
+
+            ):null
+            }
          
-//           <button class="btn btn-outline-success" type="submit">Search</button>
-//         </form>
-//       </div>
-//     </div>
-//   </nav>
-<div>
-    fhjh
-</div>
+        
+        </div>
+
+       
+       
+      </div>
+      
   )
 }
 

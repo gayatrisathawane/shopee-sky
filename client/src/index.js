@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import {createBrowserRouter,RouterProvider}  from 'react-router-dom'
 import './index.css';
+import MyOrders from './views/MyOrders/MyOrders';
 
 
 const routes = createBrowserRouter([
@@ -23,6 +24,11 @@ const routes = createBrowserRouter([
   {
     path:'/login',
     element:<Login/>
+  },
+
+  {
+    path:'/myorders',
+    element:<MyOrders/>
   },
 
 ])
