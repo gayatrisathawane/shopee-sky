@@ -39,32 +39,31 @@ const Login = () => {
   return (
     <div>
       <Navbar />
-      <div className='containe login-main-container mt-5'>
+    
+      <div className='container-fluid login-main-container mt-5'>
         <div className='row'>
 
           <div className='col-md-5'>
-            <div >
-              <img src={loginimg} alt="pic" className='mt-4 ms-3' />
-            </div>
-
+              <img src={loginimg} alt="pic" className='mt-4 ms-3 login-img' />
           </div>
+
           <div className='col-md-7'>
             <div className='p-5'>
               <form >
                 <h1 className=' text-center'> Login </h1>
                 <div class="mb-2">
-                  <label htmlFor="email" className="form-label  fs-4">Email:</label>
+                
                   <input type="email" className="form-control" id="email" value={email}
-
+                      placeholder='Enter a your email'
                     onChange={(e) => {
                       setEmail(e.target.value)
                     }} />
                 </div>
 
                 <div class="mb-2">
-                  <label htmlFor="password" className="form-label  fs-4">Password:</label>
+                
                   <input type="password" className="form-control" id="password" value={password}
-
+              placeholder='Enter a your password'
                     onChange={(e) => {
                       setPassword(e.target.value)
                     }} />
@@ -76,13 +75,13 @@ const Login = () => {
 
               </form>
             </div>
+
           </div>
 
         </div>
       </div>
-
-
-    </div>
+      </div>
+ 
 
 
 

@@ -16,7 +16,7 @@ const Navbar = () => {
 
 
   return (
-    <div className='d-flex justify-content-between navbar-container p-2 align-items-center'>
+    <div className='navbar-main-container p-2'>
 
       <div className='logo-container'>
         <p><Link to='/' className='logo'> 🛒 ShoppeSky</Link> </p>
@@ -33,7 +33,7 @@ const Navbar = () => {
 
       <div>
 
-        <span className='text-light fs-4 ms-2'>Hello,{user?.name || 'user'}</span>
+        <span className='text-light'>Hello,{user?.name || 'user'}</span>
 
 
         {

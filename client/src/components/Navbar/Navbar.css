@@ -1,21 +1,41 @@
-
-.logo{
-    font-size: 20px;
+.logo {
+    /* font-size: 20px; */
     text-decoration: none;
     color: #fff;
 
 }
 
-.navbar-container{
+.navbar-main-container {
     background-color: black;
-   
+    display: flex;
+    justify-content: space-between;
+
 }
 
-.nav-links{
+.nav-links {
     color: #fff;
     margin-left: 20px;
     text-decoration: none;
-    font-size: 20px;
+    /* font-size: 20px; */
 }
 
 
+@media screen and (max-width:768px) {
+
+    .navbar-main-container {
+        flex-direction: column;
+
+    }
+
+    .nav-link-container {
+        display: flex;
+        flex-direction: column;
+        /* justify-content: start; */
+     
+    }
+
+    .nav-links{
+        margin: 10px 10px;
+    }
+
+}
