@@ -54,3 +54,13 @@
     text-align: center;
     
 }
+
+@media screen and (max-width:768px){
+
+    .products-cards{
+        display: block;
+
+        width:220px;
+        margin:20px 50px;
+    }
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './BuyDetails.css'
+import showToast from 'crunchy-toast';
 import { useParams } from 'react-router-dom'
 
 const BuyDetails = () => {
@@ -54,7 +55,7 @@ const BuyDetails = () => {
 
         const response = await axios.post('/orders', newOrderUser)
 
-        alert(response?.data?.message)
+        showToast (response?.data?.message, 'danger',4000)
 
         if (response?.data.success) {
             window.location.href = "/myorders"

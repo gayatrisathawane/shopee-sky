@@ -3,6 +3,8 @@ import './Login.css'
 import axios from 'axios'
 import loginimg from './asset/loginform.png'
 import { Link } from 'react-router-dom';
+
+import showToast from 'crunchy-toast';
 import Navbar from '../../components/Navbar/Navbar';
 
 const Login = () => {
@@ -15,7 +17,7 @@ const Login = () => {
     const response = await axios.post('/login', {
       email, password
     })
-    alert(response?.data?.message)
+    showToast(response?.data?.message ,'success', 8000)
 
     if (response?.data?.success) {
 
@@ -31,7 +33,7 @@ const Login = () => {
      console.log(storeUser)
     if(storeUser?.email)
     {
-        alert('you alredy login .....')
+      showToast('you alredy login .....','success', 8000)
         window.location.href='/'
     }
 },[])
@@ -78,6 +80,7 @@ const Login = () => {
                 <p className='text-white text-center mt-3'><Link to='/signup' className='text-decoration-none'>Need an account ? Create one here ...!</Link></p>
 
               </form>
+            
             </div>
 
           </div>

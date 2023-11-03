@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import './MyOrders.css'
+import {Link, useParams} from 'react-router-dom'
 import Navbar from './../../components/Navbar/Navbar'
 import axios from 'axios';
 
+
 const MyOrders = () => {
+
+  const { _id }= useParams()
 
 
 
   const STATUS_BADGES = {
-    "pending":"text-danger",
-    "delivered":"text-success",
-    "shipped":"text-warning"
+    "pending": "text-danger",
+    "delivered": "text-success",
+    "shipped": "text-warning"
   }
 
   const [user, setUser] = useState({});
@@ -50,18 +54,23 @@ const MyOrders = () => {
 
   const calculateTotalAmount = () => {
     let total = 0;
-    orders.forEach((order) => {
+    orders?.forEach((order) => {
       const { product, quantity } = order;
       total += product.price * quantity;
     });
     return total;
   };
 
+
+
   return (
     <div>
       <Navbar />
-      <h1 className='text-center mt-4'> My  Orders</h1>
-      <div className='card-order'>
+     <Link to='/'> <span className='fs- bg-dark text-light ps-2 pe-2'>⬅</span></Link> 
+    
+     
+      <div className='card-order mt-4'>
+      <p className='text-center mt-4 fs-1'> My  Orders</p>
 
         {
           orders?.map((order) => {
@@ -77,20 +86,23 @@ const MyOrders = () => {
 
                 <div>
                   <div className='ps-5 pt-4'>
-                    <h2 className='myorder-product-name'>{product.name}</h2>
+                    <Link  to={`/buy/${product._id}`} 
+                    className='myorder-product-name'>{product.name}</Link><br/>
                     <span className='fw-bold'> Qty:{quantity} </span> <span className='fw-bold ms-5 text-info'> Price: ₹ {product.price}/- </span>
-                    <p className='mt-2 totalamount'>Amount =  ₹ {product.price * quantity}</p>
-                    <p className='mt-2'>shipping address:{shipping_address}</p>
-                    <p className='status'> {status} </p>
+                    <p className='mt-2 totalamount'>
+                      <span className='text-danger fw-bold'>Amount =  ₹ {product.price * quantity}
+                      </span></p>
+                    <p className='mt-2 fw-bold'>shipping address: {shipping_address}</p>
+                    <p className={`status ${STATUS_BADGES[status]}`}> {status} </p>
 
-                    <p>Delivery charges:{delivery_charges}</p>
-                 
-                     
+                    <p className='fw-bold'>Delivery charges: ₹ {delivery_charges}</p>
+
+                    
                   </div>
-               
+
                 </div>
 
-                 
+
               </div>
 
 
@@ -99,12 +111,12 @@ const MyOrders = () => {
           })
         }
 
-<h4 className='total-amount'>TOTAL AMOUNT :  ₹ 
-<span className=' me-3'>{calculateTotalAmount()}</span> </h4>
-      
+        <h4 className='total-amount'>TOTAL AMOUNT :  ₹
+          <span className=' me-3'>{calculateTotalAmount()}</span> </h4>
+
       </div>
-     
-      
+
+
     </div>
 
 

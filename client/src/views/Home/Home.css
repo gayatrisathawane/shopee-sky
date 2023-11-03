@@ -17,7 +17,11 @@
 
     .products-cards{
        display: block;
-       margin: 20px 20px;
+    
+       /* margin: 20px 20px; */
+    }
+    .searchbar{
+        width:320px;
     }
 
     

@@ -33,7 +33,7 @@ const Navbar = () => {
 
       <div>
 
-        <span className='text-light'>Hello,{user?.name || 'user'}</span>
+        <span className='text-light fs-5'>Hello 👋,{user?.name || 'user'}</span>
 
 
         {
@@ -41,7 +41,7 @@ const Navbar = () => {
             <span className='text-light fs-5 ms-3 curser-pointer' onClick={() => {
               localStorage.removeItem('user')
               window.location.href = '/login'
-            }}> Logout</span>
+            }}> Logout </span>
 
           ) : null
         }
