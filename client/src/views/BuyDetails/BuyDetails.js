@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import './BuyDetails.css'
 import { useParams } from 'react-router-dom'
 
 const BuyDetails = () => {
@@ -8,8 +9,8 @@ const BuyDetails = () => {
     const [productDetails, setproductDetails] = useState({})
 
     let [quantity, SetQuantity] = useState(1)
-    const[shippingAdress,setShippingAddress]=useState('')
-    const[deliverycharges,setDeliveryCharges]= useState(0)
+    const [shippingAdress, setShippingAddress] = useState('')
+    const [deliverycharges, setDeliveryCharges] = useState(0)
 
 
     const loadProductDetails = async () => {
@@ -39,76 +40,86 @@ const BuyDetails = () => {
     }
 
 
-    const orderPlace = async() =>{
+    const orderPlace = async () => {
 
-        const userStore = JSON.parse(localStorage.getItem('user'))
+        const userStore = JSON.parse(localStorage.getItem('user') || '{}')
 
-        const obje= {
-            user:userStore?._id,
-            product:productDetails._id,
-            quantity:quantity ,
-            shipping_address:shippingAdress,
-            delivery_charges:deliverycharges 
+        const newOrderUser = {
+            user: userStore?._id,
+            product: productDetails._id,
+            quantity: quantity,
+            shipping_address: shippingAdress,
+            delivery_charges: deliverycharges
         }
 
-        const response = await axios.post('/orders',obje)
+        const response = await axios.post('/orders', newOrderUser)
 
         alert(response?.data?.message)
 
-        if(response?.data.success)
-        {
-            window.location.href="/myorders"
+        if (response?.data.success) {
+            window.location.href = "/myorders"
         }
     }
 
 
 
     return (
-        <div>
+        <div className='container buyDetails-main-container mt-5'>
 
-            <div className='d-flex'>
-                <div>
-                    <img src={productDetails.productImg} alt={productDetails.name} />
+            <div className='buy-details-container'>
+                <div className='p-3'>
+                    <img src={productDetails.productImg} alt={productDetails.name} className='order-product-img' />
 
                 </div>
 
                 <div>
-                    <div>
-                        <h1>{productDetails.name}</h1>
-                        <h2>Price :{productDetails.price}</h2>
+                    <div className='pt-3'>
+                        <h2>{productDetails.name}</h2>
+                        <h2 className='price' >Price : ₹ {productDetails.price} /-</h2>
                         <p>{productDetails.description}</p>
-                        <button type="button" onClick={increQuantity}>+</button>
-                        {quantity}
-                        <button type="button" onClick={decrQuantity}>-</button><br/><br/>
+                        <button type="button"
+                            onClick={increQuantity} className='quantitybtn'>+</button>
+                        <button className='quantity '>{quantity}</button>
+                        <button type="button"
+                            onClick={decrQuantity} className='quantitybtn'>-</button><br /><br />
 
-                        <input type="text" 
-                        placeholder='enter your shiiping address'
-                        value={shippingAdress}
+                        <input type="text"
+                            placeholder='enter your shiiping address'
+                            value={shippingAdress}
+                            className='inputshippingaddress'
 
-                        onChange={(e)=>{
-                            setShippingAddress(e.target.value)
-                        }}
-                        />
+                            onChange={(e) => {
+                                setShippingAddress(e.target.value)
+                            }}
+                        /><br />
 
-                        < input type="radio"  
-                        value ={deliverycharges} 
-                        name='deliverycharges'
-                        onClick={()=>{
-                            setDeliveryCharges(40)
-                        }}/>Normal delivery charges 
+                        <div className='mt-4'>
+                            < input type="radio"
+                                value={deliverycharges}
+                                name='deliverycharges'
+                                className='deliverycharges'
+                                onClick={() => {
+                                    setDeliveryCharges(40)
+                                }} /> <label className='ms-1'>Normal delivery charges</label>
 
-                        < input type="radio"  
-                        value ={deliverycharges}
-                        name='deliverycharges'
+                            < input type="radio"
+                                value={deliverycharges}
+                                name='deliverycharges'
+                                className='deliverycharges ms-5'
 
-                        onClick={()=>{
-                            setDeliveryCharges(100)
-                        }}
-                        
-                        /> SuperFast delivery charges
+                                onClick={() => {
+                                    setDeliveryCharges(100)
+                                }}
 
-                        <button type="button" onClick={orderPlace} className='button'>Order Now</button>
+                            /><label className='ms-2'>SuperFast delivery charges</label> 
+                        </div>
+
+
+
                     </div>
+                    <button type="button"
+                        onClick={orderPlace}
+                        className='button order-now-btn mt-4'>Order Now</button>
                 </div>
 
 

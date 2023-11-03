@@ -40,17 +40,21 @@ const Login = () => {
     <div>
       <Navbar />
     
-      <div className='container-fluid login-main-container mt-5'>
+      <div className=' container login-main-container mt-5'>
         <div className='row'>
 
           <div className='col-md-5'>
-              <img src={loginimg} alt="pic" className='mt-4 ms-3 login-img' />
+            <div className=''>
+            <img src={loginimg} alt="pic" className='mt-4 ms-5 login-img' />
+            </div>
+             
           </div>
 
           <div className='col-md-7'>
-            <div className='p-5'>
+            <div className='login-form'>
               <form >
-                <h1 className=' text-center'> Login </h1>
+                <h1 className=' text-center login-heading mt-5'> Login </h1>
+                  
                 <div class="mb-2">
                 
                   <input type="email" className="form-control" id="email" value={email}
@@ -62,7 +66,7 @@ const Login = () => {
 
                 <div class="mb-2">
                 
-                  <input type="password" className="form-control" id="password" value={password}
+                  <input type="password" className="form-control " id="password" value={password}
               placeholder='Enter a your password'
                     onChange={(e) => {
                       setPassword(e.target.value)

@@ -15,7 +15,7 @@ const ProductCard = ({ _id, name, price,productImg, description }) => {
         <img src={productImg} alt={name}  className='product-img'/>
         <h2 className='product-name'>{name}</h2> 
         <p className='product-description'>{description}</p>
-         <p className='product-price'> ₹ {price}</p> 
+         <p className='product-price'> ₹ {price} /-</p> 
          <Link className='button buy-now-btn ' 
 
               onClick={()=>{

@@ -51,6 +51,7 @@ const Signup = () => {
             window.location.href = "/login"
         }
     }
+    
     useEffect(() => {
         const storeUser = JSON.parse(localStorage.getItem('user') || '{}')
 
@@ -68,7 +69,7 @@ const Signup = () => {
                     <div className='col-md-5'>
                         <div className='ps-5 pt-2'>
 
-                            <img src={signupimg}  alt="signimg" />
+                            <img src={signupimg} alt="signimg" />
 
                         </div>
 
@@ -78,12 +79,11 @@ const Signup = () => {
                         <div>
 
                             <form >
-                                <h1 className='text-center'>Signup</h1>
+                                <h1 className='text-center mt-3'>Signup</h1>
 
                                 <div class="mb-2">
-                                    {/* <label htmlFor="name" className="form-label">Name:</label> */}
                                     <input type="text"
-                                        className="form-control"
+                                        className="form-control mt-4"
                                         id="name"
                                         value={name}
 

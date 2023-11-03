@@ -1,5 +1,24 @@
 .products-cards{
     display: flex;
-    /* justify-content: space-evenly; */
+    justify-content: space-around;
     flex-wrap: wrap;
+  
+}
+.searchbar{
+    width: 500px;
+    display: block;
+    margin: 0 auto;
+   padding:5px 20px;
+    border-radius: 20px;
+
+}
+
+@media screen  and (max-width:768px){
+
+    .products-cards{
+       display: block;
+       margin: 20px 20px;
+    }
+
+    
 }

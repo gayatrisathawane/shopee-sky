@@ -1,32 +1,12 @@
-/* .main-container {
-    background-image: url('https://t3.ftcdn.net/jpg/05/35/13/82/360_F_535138292_62ZnI4Hcw37J8Jaeg4E9TzJwUciCwSnp.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-    position: relative;
-} */
-
-/* .sign-form-container {
-    position: absolute;
-    top: 80px;
-    left: 100px;
-    width: 550px;
-    border-radius: 10px;
-    height: fit-content;
-    padding: 10px 15px;
-    box-shadow: 0 0 10px 0 white;
-} */
-
-
 .signup-container{
-    box-shadow: 0 0 5px black;
+    box-shadow: 0 0 5px rgb(118, 220, 248);
 
   background-color: white;
 }
 .sign-up-btn {
     display: block;
     margin: 0 auto;
-    background-color: rgb(20, 19, 19);
+    background-color: rgb(28, 134, 196);
     padding: 5px 25px;
     color:white;
     font-size: 20px;

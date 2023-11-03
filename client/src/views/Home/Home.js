@@ -6,6 +6,7 @@ import './Home.css'
 
 const Home = () => {
   const [products ,setProduct] = useState([]);
+  const[search,setSearch]= useState('');
 
 
   const loadProducts = async () =>{
@@ -18,13 +19,27 @@ const Home = () => {
     loadProducts()
 
   },[])
+
+  // const searchProduct = async() =>{
+
+  //   const response =await axios.get(`/product/search/q=${search}`)
+  //   setProduct(response)
+
+  // }
+
+  // useEffect(()=>{
+
+  //   searchProduct()
+
+  // },[search])
   return (
     <div>
         <Navbar/>
 
-        <div className='bg-home'></div>
+        <input type="text" value={search} className='mt-3 searchbar' onChange={(e)=>{
+          setSearch(e.target.value)
+        }}/>
         <div className='products-cards'>
-
        {
 
         products.map((product,i)=>{
@@ -36,14 +51,13 @@ const Home = () => {
              price={price} 
               productImg={productImg} 
               description={description}
-              _id={_id}/>
+              _id = { _id }/>
           )
 
         })
 
        }
-       </div>
-      
+       </div> 
     </div>
   )
 }
