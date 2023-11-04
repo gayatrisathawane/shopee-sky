@@ -20,18 +20,26 @@ const Home = () => {
 
   },[])
 
-  // const searchProduct = async() =>{
 
-  //   const response =await axios.get(`/product/search/q=${search}`)
-  //   setProduct(response)
+    const searchProduct = async() =>{
+      if(search ==='') {
+        loadProducts();
+        return
+      }
 
-  // }
+      const response =await axios.get(`/searchproduct?q=${search}`)
+      setProduct(response?.data?.data)
+  
+  }
 
-  // useEffect(()=>{
+  
 
-  //   searchProduct()
+  useEffect(()=>{
 
-  // },[search])
+    searchProduct()
+  
+
+  }, [search] )
   return (
     <div>
         <Navbar/>
@@ -43,7 +51,7 @@ const Home = () => {
        {
 
         products.map((product,i)=>{
-          const {_id, name, price, productImg, description }=product
+          const { _id, name, price, productImg, description }=product
           return(
             <ProductCard
              key={i} 
@@ -56,6 +64,10 @@ const Home = () => {
 
         })
 
+       }
+
+       {
+        products.length ===0 ?<h2> Product not found </h2> :null
        }
        </div> 
     </div>

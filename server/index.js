@@ -173,14 +173,14 @@ app.delete('/products/:_id', async (req, res) => {
 })
 
 // //search product by name
-app.get('/product/search', async (req, res) => {
+app.get('/searchproduct', async (req, res) => {
 
     const { q } = req.query;
 
-    const searchProduct = await Product.find({ name: { $regex: q, $options: 'i' } })
+    const searchProduct = await Product.find({name: {$regex: q, $options: 'i'}})
 
 
-    return res.json({
+     res.json({
         success: true,
         data: searchProduct,
         message: "search successfully"
@@ -294,6 +294,10 @@ app.patch('/orders/status/:id', async (req, res) => {
         message: "Order status update successfully///"
     })
 })
+
+
+
+
 
 
 

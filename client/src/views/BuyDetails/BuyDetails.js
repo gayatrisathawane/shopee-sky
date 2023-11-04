@@ -15,10 +15,18 @@ const BuyDetails = () => {
 
 
     const loadProductDetails = async () => {
+        try{
 
-        const response = await axios.get(`/products/${_id}`)
+            const response = await axios.get(`/products/${_id}`)
 
-        setproductDetails(response?.data?.data)
+            setproductDetails(response?.data?.data)
+
+        } catch(err)
+        {
+          alert("dfhjgf")
+        }
+
+       
     }
 
 

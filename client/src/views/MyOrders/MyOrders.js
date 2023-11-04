@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const MyOrders = () => {
 
-  const { _id }= useParams()
+  const { _id }= useParams();
 
 
 
@@ -66,11 +66,11 @@ const MyOrders = () => {
   return (
     <div>
       <Navbar />
-     <Link to='/'> <span className='fs- bg-dark text-light ps-2 pe-2'>⬅</span></Link> 
+     {/* <Link to='/'> <span className='fs- bg-dark text-light ps-2 pe-2'>⬅</span></Link>  */}
     
      
       <div className='card-order mt-4'>
-      <p className='text-center mt-4 fs-1'> My  Orders</p>
+      <p className='text-center  fs-1'> My  Orders</p>
 
         {
           orders?.map((order) => {
@@ -110,6 +110,7 @@ const MyOrders = () => {
             )
           })
         }
+         
 
         <h4 className='total-amount'>TOTAL AMOUNT :  ₹
           <span className=' me-3'>{calculateTotalAmount()}</span> </h4>
