@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './Signup.css'
+import showToast from 'crunchy-toast';
 import signupimg from './signupimg.png'
 import Navbar from '../../components/Navbar/Navbar';
 import { Link } from 'react-router-dom';
@@ -45,7 +46,7 @@ const Signup = () => {
             gender
         })
 
-        alert(response?.data?.message)
+        showToast(response?.data?.message)
 
         if (response?.data?.success) {
             window.location.href = "/login"
@@ -56,7 +57,8 @@ const Signup = () => {
         const storeUser = JSON.parse(localStorage.getItem('user') || '{}')
 
         if (storeUser?.email) {
-            alert('you alredy SignUp.....')
+            showToast('you alredy signup .....','success', 8000)
+          
             window.location.href = '/'
         }
     }, [])

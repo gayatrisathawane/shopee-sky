@@ -6,9 +6,12 @@
 }
 
 .navbar-main-container {
-    background-color: rgb(9, 73, 112);
+    background-color: rgb(13, 104, 152);
     display: flex;
+    position: sticky;
+    top:0px;
     justify-content: space-between;
+    z-index: 1;
 
 }
 

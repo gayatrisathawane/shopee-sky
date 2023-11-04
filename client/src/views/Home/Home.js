@@ -3,6 +3,7 @@ import Navbar from './../../components/Navbar/Navbar'
 import ProductCard from '../../components/ProductCard/ProductCard'
 import axios from 'axios'
 import './Home.css'
+import Footer from '../../components/Footer/Footer'
 
 const Home = () => {
   const [products ,setProduct] = useState([]);
@@ -50,7 +51,7 @@ const Home = () => {
         <div className='products-cards'>
        {
 
-        products.map((product,i)=>{
+        products?.map((product,i)=>{
           const { _id, name, price, productImg, description }=product
           return(
             <ProductCard
@@ -70,6 +71,7 @@ const Home = () => {
         products.length ===0 ?<h2> Product not found </h2> :null
        }
        </div> 
+       <Footer/>
     </div>
   )
 }

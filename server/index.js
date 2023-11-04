@@ -15,10 +15,10 @@ const PORT = process.env.PORT || 5000
 //mongodb connection 
 const mongoDb = async () => {
 
-    const connect = await mongoose.connect(process.env.MONGODB_URL)
+ const connect = await mongoose.connect(process.env.MONGODB_URL)
 
     if (connect) {
-        console.log("mongodb connected")
+        console.log("Mongodb connected")
     }
 
 }
@@ -39,7 +39,7 @@ app.get('/users', async (req, res) => {
 //sign up
 app.post('/signup', async (req, res) => {
 
-    const { name, email, mobile, address, password, gender } = req.body
+const {name, email, mobile, address, password, gender } = req.body
 
     const newUser = new User({
         name,

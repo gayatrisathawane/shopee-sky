@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import './MyOrders.css'
-import {Link, useParams} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import Navbar from './../../components/Navbar/Navbar'
 import axios from 'axios';
 
 
 const MyOrders = () => {
-
-  const { _id }= useParams();
-
-
 
   const STATUS_BADGES = {
     "pending": "text-danger",
@@ -85,17 +81,17 @@ const MyOrders = () => {
                 </div>
 
                 <div>
-                  <div className='ps-5 pt-4'>
+                  <div className=' order-details'>
                     <Link  to={`/buy/${product._id}`} 
                     className='myorder-product-name'>{product.name}</Link><br/>
-                    <span className='fw-bold'> Qty:{quantity} </span> <span className='fw-bold ms-5 text-info'> Price: ₹ {product.price}/- </span>
+                    <span className='fw-bold mt-2'> Qty:{quantity} </span> <span className='fw-bold ms-5 text-info mt-2'> Price: ₹ {product.price}/- </span>
                     <p className='mt-2 totalamount'>
-                      <span className='text-danger fw-bold'>Amount =  ₹ {product.price * quantity}
+                      <span className='text-danger fw-bold price'>Amount = ₹ {product.price * quantity}
                       </span></p>
-                    <p className='mt-2 fw-bold'>shipping address: {shipping_address}</p>
+                    <p className='mt-3 fw-bold'>shipping address: {shipping_address}</p>
                     <p className={`status ${STATUS_BADGES[status]}`}> {status} </p>
 
-                    <p className='fw-bold'>Delivery charges: ₹ {delivery_charges}</p>
+                    <p className='fw-bold text-success'>Delivery charges: ₹ {delivery_charges}</p>
 
                     
                   </div>

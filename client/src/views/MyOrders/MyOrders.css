@@ -14,7 +14,7 @@
     width:200px;
     border-radius: 10px;
     padding: 10px;
-    box-shadow: 0 0 5px rgb(153, 222, 247);
+    box-shadow: 0 0 5px rgb(44, 143, 179);
 }
 
 .card-order{
@@ -32,10 +32,17 @@
     font-weight: bold;
 }
 
+.order-details{
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
 .status{
     position: absolute;
     right:10px;
     top:10px;
+    font-weight: bold;
+    font-size: 17px;
 }
 .totalamount{
     display: inline-block;
@@ -48,15 +55,23 @@
 
     .my-order-card{
      flex-direction: column;
-    
-     padding: 10px 10px;
+     display: block; 
+     margin: 0 auto;
+     margin-top: 20px;
+      position: relative;
+      padding: 10px;
+     /* width:250px;
+     height: 500px; */
      
    }
    .myorder-product-img{
     display: block;
-    margin: 0 auto;
-    height:200px;
-    width:200px;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 24px;
+    /* margin: 25px auto; */
+    height:280px;
+    width:240px;
     border-radius: 10px;
     padding: 10px;
     box-shadow: 0 0 5px rgb(128, 210, 240);
@@ -67,4 +82,20 @@
     text-align: center;
 }
 
+.status{
+    position: absolute;
+    right:10px;
+    top:5px;
+}
+
+.order-details{
+    padding: 0;
+}
+
+.myorder-product-name{
+    text-decoration: none;
+   text-align: center;
+    color:black;
+  
+}
 }
