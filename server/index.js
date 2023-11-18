@@ -5,12 +5,14 @@ dotenv.config()
 import User from './models/user.js'
 import Product from './models/product.js'
 import Order from './models/Order.js'
+import path from 'path'
 const app = express()
 
 app.use(express.json())
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8080
 
+const __dirname = path.resolve();
 
 //mongodb connection 
 const mongoDb = async () => {
@@ -295,16 +297,13 @@ app.patch('/orders/status/:id', async (req, res) => {
     })
 })
 
-
-
-
-
-
-
-
-
-
-
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+  
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'))
+    });
+  }
 
 
 app.listen(PORT, () => {

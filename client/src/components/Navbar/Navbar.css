@@ -10,12 +10,20 @@
     display: flex;
     position: sticky;
     top:0px;
+    color:white;
     justify-content: space-between;
     z-index: 1;
 
 }
 
-.nav-links {
+/* .bg-navbar{
+
+    background-color: rgb(13, 104, 152);
+    color: white;
+
+} */
+
+.nav-links{
     color: #fff;
     margin-left: 35px;
     text-decoration: none;
